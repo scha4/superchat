@@ -1,11 +1,12 @@
 import React from "react";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 function SignUpForm() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
@@ -16,11 +17,15 @@ function SignUpForm() {
     const password = e.target[2].value;
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(res.user, {
+        displayName,
+      });
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         displayName,
         email,
       });
+
       await setDoc(doc(db, "userChats", res.user.uid), {});
       navigate("/");
     } catch (err) {
@@ -41,7 +46,7 @@ function SignUpForm() {
         onSubmit={handleSubmit}
       >
         <div className="mb-4 flex flex-col gap-6">
-          <Input size="lg" label="Name" type="text" />
+          <Input size="lg" label="Display Name" type="text" />
           <Input size="lg" label="Email" type="email" />
           <Input type="password" size="lg" label="Password" />
         </div>

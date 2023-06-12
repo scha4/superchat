@@ -30,36 +30,6 @@ function NavbarComp() {
         className="p-1 font-normal"
       >
         <a href="#" className="flex items-center">
-          Pages
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
           Docs
         </a>
       </Typography>
@@ -67,25 +37,29 @@ function NavbarComp() {
   );
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar className="relative mx-auto max-w-full py-2 px-4 lg:px-8 lg:py-4 ">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
           href="#"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
+          className="mr-4 cursor-pointer py-1.5 text-xl font-bold"
         >
           Secret Chat
         </Typography>
-        <div> {currentUser.email}</div>
         <div className="hidden lg:block">{navList}</div>
-        <Button
-          variant="gradient"
-          size="sm"
-          className="hidden lg:inline-block"
-          onClick={() => signOut(auth)}
-        >
-          <span>Logout</span>
-        </Button>
+        <div className="lg:flex ">
+          <div className="text-blue-400 font-bold mr-6 text-xl ">
+            {currentUser.displayName}
+          </div>
+          <Button
+            variant="gradient"
+            size="sm"
+            className="hidden lg:inline-block"
+            onClick={() => signOut(auth)}
+          >
+            <span>Logout </span>
+          </Button>
+        </div>
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
