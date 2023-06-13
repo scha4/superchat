@@ -50,18 +50,18 @@ function Input() {
   };
   return (
     <>
-      <div className="bg-gray-100 flex py-5 ">
+      <div className="bg-gray-100 flex py-5 items-center justify-center rounded-lg">
         <input
           placeholder="Type here..."
           onChange={(e) => setText(e.target.value)}
-          className="border-2 rounded-lg border-blue-400 w-5/6"
+          className="border-2 rounded-lg border-blue-400 w-5/6 indent-2"
           value={text}
         />
-        <button className="">
+        {/* <button className="">
           <FiImage size={30} stroke="#08f" />
-        </button>
+        </button> */}
         <button className="hover:bg-sky-700" onClick={handleSend}>
-          <AiOutlineSend size={30} fill="#08f" />
+          <AiOutlineSend size={30} fill="#08f" className="hover:bg-sky-700" />
         </button>
       </div>
     </>

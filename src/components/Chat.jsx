@@ -19,7 +19,7 @@ function Chat() {
   const { data } = useContext(ChatContext);
   return (
     <>
-      <div className="w-full  bg-blue-400  h-[calc(100vh-11rem)] ">
+      <div className="w-full  bg-blue-400  h-[calc(100vh-11rem)] rounded mx-2 mt-2">
         <div className="flex items-center justify-center py-5 mx-3 ">
           <div className="text-xl font-bold text-white">
             {data.user?.displayName}

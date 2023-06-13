@@ -29,16 +29,23 @@ function Chats() {
 
   return (
     <>
-      <div className="flex flex-col border-2 border-gray-400 mt-1 py-2">
+      <div className="flex flex-col border-2 border-gray-400 mt-1 h-5/6 rounded-lg ">
+        <div className="text-xl font-bold text-center bg-gray-200 py-3 text-blue-300">
+          Chats
+        </div>
         {Object.entries(chats)
           ?.sort((a, b) => b[1].date - a[1].date)
           .map((chat) => (
-            <div key={chat[0]} onClick={() => handleSelect(chat[1].userInfo)}>
-              <div className="font-bold text-l ml-2">
+            <div
+              className="border-2   py-1 rounded-lg mt-1 h-16 overflow-scroll"
+              key={chat[0]}
+              onClick={() => handleSelect(chat[1].userInfo)}
+            >
+              <div className="font-bold text-l ml-2 ">
                 {chat[1].userInfo.displayName}
               </div>
 
-              <div className="ml-2">{chat[1].lastMessage?.text}</div>
+              <div className="ml-2 text-xs">{chat[1].lastMessage?.text}</div>
             </div>
           ))}
       </div>

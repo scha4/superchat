@@ -18,7 +18,7 @@ function Messages() {
   console.log(messages);
   return (
     <>
-      <div className="bg-white w-full  h-[calc(100vh-12rem)] border-2 border-black overflow-scroll ">
+      <div className="bg-white w-full  h-[calc(100vh-12rem)] border-2  overflow-scroll ">
         <div className="mb-10">
           {messages.map((m) => (
             <Message message={m} key={m.id} />

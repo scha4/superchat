@@ -10,6 +10,8 @@ import {
 } from "@material-tailwind/react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import Search from "./Search";
+import Chats from "./Chats";
 function NavbarComp() {
   const { currentUser } = useContext(AuthContext);
   const [openNav, setOpenNav] = useState(false);
@@ -27,11 +29,18 @@ function NavbarComp() {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className=" flex text-xl font-normal  lg:hidden justify-center"
       >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
+        <span>Hello </span>
+        <span className="text-blue-400 ml-1"> {currentUser.displayName}</span>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal flex justify-center"
+      >
+        <Search />
       </Typography>
     </ul>
   );
@@ -48,7 +57,7 @@ function NavbarComp() {
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <div className="lg:flex ">
-          <div className="text-blue-400 font-bold mr-6 text-xl ">
+          <div className="hidden lg:flex text-blue-400 font-bold mr-6 text-xl ">
             {currentUser.displayName}
           </div>
           <Button
@@ -101,6 +110,15 @@ function NavbarComp() {
       <Collapse open={openNav}>
         <div className="container mx-auto">
           {navList}
+          <Typography
+            as="li"
+            variant="small"
+            color="blue-gray"
+            className="p-1 font-normal"
+          >
+            <Chats />
+          </Typography>
+
           <Button
             variant="gradient"
             size="sm"

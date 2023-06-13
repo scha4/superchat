@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Button } from "@material-tailwind/react";
 import {
   collection,
   query,
@@ -11,6 +12,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { BsPersonAdd, BsXLg } from "react-icons/bs";
 import { AuthContext } from "../AuthContext";
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -75,27 +77,38 @@ const Search = () => {
     setUsername("");
   };
   return (
-    <div className="search">
-      <div className="searchForm">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="min-w-[288px] py-1  border-2 border-blue-400 indent-1 rounded-md"
-          onKeyDown={handleKey}
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
-      </div>
-      {err && <span>User not found!</span>}
-      {user && (
-        <div
-          className=" border border-blue-400 h-10 mt-1 flex items-center rounded-sm"
-          onClick={handleSelect}
-        >
-          <span className="ml-2">{user.displayName}</span>
+    <>
+      <div className="search">
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="Search friends..."
+            className="min-w-[188px] py-1  border-2 border-blue-400 indent-1 rounded-md"
+            onKeyDown={handleKey}
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+          />
+          <Button className="px-5 py-2 ml-2" onClick={handleSearch}>
+            search
+          </Button>
         </div>
-      )}
-    </div>
+        {err && <span>User not found!</span>}
+        {user && (
+          <div
+            className=" border-2 bg-white border-black  h-10 mt-1 flex items-center justify-between absolute z-1 min-w-[288px] rounded-lg delay-150"
+            onClick={handleSelect}
+          >
+            <div className="flex flex-row items-center">
+              <BsPersonAdd size={25} fill="#08f" className="ml-3" />
+              <span className="ml-2 text-blue-400 font-bold  ">
+                {user.displayName}
+              </span>
+            </div>
+            <BsXLg className="mr-3" size={20} fill="#08f" />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
